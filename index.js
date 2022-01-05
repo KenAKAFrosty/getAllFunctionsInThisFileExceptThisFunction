@@ -7,8 +7,7 @@ console.log(allFunctionsDict);
 console.log( allFunctionsDict["sum"](10,30) ) //prints 40
 console.log( allFunctionsDict["difference"](350,250) ) //prints 100
 console.log( allFunctionsDict["product"](6,4) ) // prints 24
-console.log( Object.keys(allFunctionsDict) ) //prints an array of just the names of all functions
-console.log( allFunctionsDict["product"] )
+console.log( Object.keys(allFunctionsDict) ) //prints ['sum','difference','product']
 
 function sum(a, b) {
     return a + b;
@@ -21,7 +20,6 @@ function difference(a, b) {
 const product = (a,b) => { 
     return a * b;
 }
-console.log(product(10,60))
 
 function getAllFunctionsInThisFileExceptThisFunction() {
     const thisFunctionName = arguments.callee.name;
