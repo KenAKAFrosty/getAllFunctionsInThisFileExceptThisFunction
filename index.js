@@ -2,12 +2,15 @@ const fs = require('fs');
 const esprima = require("esprima");
 const escodegen = require("escodegen");
 
-const allFunctionsDict = getAllFunctionsInThisFileExceptThisFunction();
-console.log(allFunctionsDict);
+const [allFunctionsDict, allFunctionsAsStrings] = getAllFunctionsInThisFileExceptThisFunction();
+console.log(allFunctionsAsStrings);
 console.log( allFunctionsDict["sum"](10,30) ) //prints 40
 console.log( allFunctionsDict["difference"](350,250) ) //prints 100
 console.log( allFunctionsDict["product"](6,4) ) // prints 24
 console.log( Object.keys(allFunctionsDict) ) //prints ['sum','difference','product']
+for (key in allFunctionsDict){ 
+    console.log(allFunctionsDict[key](100,30))
+}
 
 function sum(a, b) {
     return a + b;
@@ -42,10 +45,12 @@ function getAllFunctionsInThisFileExceptThisFunction() {
 
     const allFunctionsExceptThisOne = allFunctions.filter(e => e.id.name !== thisFunctionName);
     let functionsDict = {};
+    let functionsAsStringsDict = {};
     for (parsedFunction of allFunctionsExceptThisOne) {
         const functionString = escodegen.generate(parsedFunction);
-        const newFunction = eval(`(${functionString})`)
+        const newFunction = eval(`(${functionString})`);
         functionsDict[parsedFunction.id.name] = newFunction;
+        functionsAsStringsDict[parsedFunction.id.name] = functionString;
     }
-    return functionsDict;
+    return [functionsDict,functionsAsStringsDict];
 }
