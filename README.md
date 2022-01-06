@@ -10,4 +10,4 @@
 8) Convert that string into a usable function within the script itself again
 
 
-The end result will spit back out an object with the key:value pairs where the key is the string of the function's name, and the value is the function itself.
+The end result will spit back out an object with the key:value pairs where the key is the string of the function's name, and the value is the function itself. It'll also send back a second object of the same, but the function still in string format
