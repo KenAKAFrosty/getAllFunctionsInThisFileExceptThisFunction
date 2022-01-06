@@ -24,6 +24,8 @@ const product = (a,b) => {
     return a * b;
 }
 
+
+//normally I wouldn't have a function this long. But if we break it up, those other functions then get caught by this
 function getAllFunctionsInThisFileExceptThisFunction() {
     const thisFunctionName = arguments.callee.name;
     const rawTextFromThisFile = fs.readFileSync(__filename, "utf8");
